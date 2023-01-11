@@ -7,7 +7,7 @@ import {useCookies} from "react-cookie";
 import {BrowserRouter, Route, Router, Routes, useNavigate} from "react-router-dom";
 import axios from "axios";
 import Write from "./Write";
-import ArticleView from "./ArticleView";
+import {ArticleView} from "./ArticleView";
 
 
 function App() {

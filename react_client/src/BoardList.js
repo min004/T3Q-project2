@@ -66,7 +66,7 @@ class BoardList extends Component {
                     justifyContent:'center',
                     borderRadius: '999px'
                     }}>Contents</div>
-                <Table align="center" position="relative" width='800vmin20vw'>
+                <Table align="center" position="relative" width='100%'>
                     <thead>
                         <tr>
                             <th>번호</th>
