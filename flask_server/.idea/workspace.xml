@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e6e9fdf-fcad-4e41-b198-e7de4e8f93bc" name="변경" comment="망한거 수정">
+      <change afterPath="$PROJECT_DIR$/flask_session/029679308e58380b7926b655202bc6a7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/095cf19916e610ebd4a24fb731fe7467" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/0be25b3d49efc5fd39be541ca811e240" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/1e0f97d05bee1c4b05bfc6dc8f3f9ec9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/25c47d2400d3782e9ceab66af55ea7d1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/268cd3468382bd5ea647f440114cdb55" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/2e82559ffd8bf5107b8f02e77b84a333" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/3a55cc902878b33d880664f2e257eeec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/3ccd39fb8a6690d00e49a7ee4bd33eb1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/3e783ec672192c51778440b0ed70418e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/449dfc249799412858f27c9c2586fd31" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/47971cf3a6e93ab3bf8ee28facddaf1a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/55ba5f19a4c644f3d743d6e594e237b7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/5defc862c94461909c5f226eef871d7a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/5f6067e21b81567aaf3e8d2bab40ab2f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/6330cbd114251a97bda3a9cd2092a844" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/68e370a09a6ce884379134595305f4f9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/6a6c25a48763f8f8c1e03c688b3edfb1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/6b674060edea567eb4df0c1ff35adc6d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/6ca2a2dcccea9b92a39d5ed035c9cf5e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/71902c6286483e7d51d062b128d1b2e6" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/72f1baaa2411103443f188bf286f8ac7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/74164b58604fe6abf516d7600a10de18" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/7836a78059a939302985c969956d8b26" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/82d5fbac9c4d8f263e6d6f1af9b9e94d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/90ae46bdad4611c2d4dd9a60756e73ca" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/94a4c4413529cfb08b1d67bdd93b4470" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/94f314783261d291458e2cc878c0f03e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/a63919a84e3bf98ab356eeee7750c663" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/a9ce74790d7cdaf8da89fad5da342f1d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/aea9abd06f592a5889ce8d652bfa6ffc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/afd05c12c07c2787698c8e8c3eef405b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/b23c4168b3a76787899a6474e4a9f4f4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/ba8c9b48fa02072a3d8ecb403a158c7f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/bcf6780a922ec61487c8f9a176c86e40" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/c143d47d0d84a4caceccb0e328d019fc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/c619d0195e5ebb9ef8cffebfba17434f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/c95e919d30a8d1895432a9d739063ee2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/d1221936616557ad201b46d5c4c1a38e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/d5d24b535d824311a03fe3fd4b7e829f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/d6bcd2aad72d6ca10bea085fb290dbbd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/d7c5c9a39fb3a87712d5a1b7fa4d551d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/d8629698b0d99a255cdce889e57d7978" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/ddbf4bf3c483d7f99723e44af57e572c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/e279954a9faa8e6adc6af0b6ca66edda" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/ea8eed7ad06d44a88970a9603e49487e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/f17710af9540927e7c6a488d0e7bc290" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/f5823881628d9d8651e66ad958bd4a79" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/f7ba554b0681dac3560f0a8f02f64958" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/2029240f6d1128be89ddc32729463129" beforeDir="false" afterPath="$PROJECT_DIR$/flask_session/2029240f6d1128be89ddc32729463129" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/54a83fc946960e53e4cdeb9a95b5e9c8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/93a05bceebf64f3f5dcb2338e380edd3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/aafbfa3600b3b1349bb037cd93595a26" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/c5cd1e45f19ef494b1b9f712644513aa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/fc859ba2c6127a24fdc7cbb27b59ee46" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team_bc/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/team_bc/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team_bc/models/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/team_bc/models/question.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team_bc/views/question_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/team_bc/views/question_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react_client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_client/src/BoardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react_client/src/BoardList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_client/src/Hello.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react_client/src/Hello.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_client/src/Write.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react_client/src/Write.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KAFbUXQTQyTi9mEiaLgbfEi05A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/galoi/team_bc/server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Flask (team_bc/__init__.py)" type="Python.FlaskServer" nameIsGenerated="true">
+      <module name="flask_server" />
+      <option name="target" value="C:\Users\galoi\Downloads\team_bc\flask_server\team_bc\__init__.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\galoi\Downloads\team_bc\flask_server\venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.8 (flask_server) (2)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="5e6e9fdf-fcad-4e41-b198-e7de4e8f93bc" name="변경" comment="" />
+      <created>1673409551859</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673409551859</updated>
+      <workItem from="1673409552976" duration="1871000" />
+      <workItem from="1673411454542" duration="223000" />
+      <workItem from="1673411694443" duration="2575000" />
+    </task>
+    <task id="LOCAL-00001" summary="망한거 수정">
+      <created>1673410020109</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673410020109</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="망한거 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="망한거 수정" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/flask_server$question_view.coverage" NAME="question_view 커버리지 결과" MODIFIED="1673411514433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/team_bc/views" />
+    <SUITE FILE_PATH="coverage/flask_server$__init__.coverage" NAME="__init__ 커버리지 결과" MODIFIED="1673411540035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/team_bc" />
+    <SUITE FILE_PATH="coverage/flask_server$Flask__team_bc___init___py_.coverage" NAME="Flask (team_bc/__init__.py) 커버리지 결과" MODIFIED="1673413996755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>
