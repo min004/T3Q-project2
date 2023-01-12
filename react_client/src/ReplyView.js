@@ -23,13 +23,13 @@ const Board = ({
 /**
  * BoardList class
  */
-class replyList extends Component {
+class ReplyView extends Component {
     state = {
         replyList: [],
     };
 
-    getList = () => {
-        Axios.get(`http://localhost:5000/article?aid=${aid}/reply`, {})
+    getList = (props) => {
+        Axios.get(`http://localhost:5000/article?aid=${props.aid}/reply`, {})
             .then((res) => {
                 const data  = res.data;
                 this.setState({
@@ -96,4 +96,4 @@ class replyList extends Component {
     }
 }
 
-export default replyList;
+export default ReplyView;

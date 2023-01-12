@@ -123,7 +123,7 @@ useEffect(() => {
                             </tr>
                             <tr>
                                 <td colSpan={2} align="center">
-                                <Reply/>
+                                <Reply aid={articleId}/>
                                 </td>
                             </tr>
                         </tbody>
