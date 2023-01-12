@@ -2,6 +2,8 @@ import React, { Component, useEffect, useState }from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Update from "./Update";
+import Write from "./Write";
 
 
 export const ArticleView = (props) => {
@@ -12,9 +14,9 @@ const [state, setState] = useState({article: [],});
 const [id, setId] = useState([''])
 const [title, setTitle] = useState([''])
 const [registerId, setRegisterId] = useState([''])
-const [registeDate, setRegisteDate] = useState([''])
+const [registerDate, setRegisteDate] = useState([''])
 const [content, setContent] = useState([''])
-
+const [isModifyMode, setModifyMode] = useState('False')
 
 useEffect(() => {
         let data = {
@@ -53,7 +55,9 @@ useEffect(() => {
             });
     
   },[]);
-
+  function modeChange() {
+    setModifyMode('True')
+  }
 
   function delete_article(e) {
     e.preventDefault();
@@ -80,6 +84,8 @@ useEffect(() => {
          */
             return (
                 <div className="article-board">
+                {isModifyMode === 'False' ? 
+                // <div>False</div>
                 <div>
                     <Table align="center" position="relative" width='100%'>
                         <tbody>
@@ -97,7 +103,7 @@ useEffect(() => {
                             </tr>
                             <tr align="left" border-bottom='1px' padding= '10px'>
                                 <td width="50px">작성일</td>
-                                <td width="500px">{registeDate}</td>
+                                <td width="500px">{registerDate}</td>
                                 {/* <td width="100px">{registeDate}</td> */}
                             </tr>
                             <tr>
@@ -116,8 +122,8 @@ useEffect(() => {
                             </tr>
                         </tbody>
                     </Table>
-                    {/* <Button 
-                    style={{marginLeft: '0vh'}} onClick={() => window.location.href = "/write"}>글쓰기</Button> */}
+                    <Button 
+                    style={{marginLeft: '0vh'}} onClick={modeChange}>수정하기</Button>
                     <Button 
                     style={{marginLeft: '0vh'}} onClick={delete_article}>삭제</Button>
                     <Button style={{marginLeft: '80%'}} onClick={() => window.location.href = "/board"}>목록으로</Button> 
@@ -125,6 +131,9 @@ useEffect(() => {
                     <Button variant="danger">삭제하기</Button>
                     <Button variant="info">글쓰기</Button> */}
                 </div>
+                :
+                <Update title={title}/>
+                }
                 </div>
             );
         

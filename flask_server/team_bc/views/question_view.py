@@ -14,6 +14,7 @@ def _list():
     result = []
     for i in question_list:
         result.append(i.to_dict())
+    result.reverse()
     return result
 
 
@@ -68,3 +69,18 @@ def get_article():
     else:
         success = False
     return article.to_dict()
+
+
+@bp.route('/article/edit/<aid>', methods=['GET', 'POST'])
+def edit_article(aid):
+	article = Question.query.get_or_404(aid)
+	if request.method == 'POST':
+		article.a_title = request.form['a_title']
+		article.a_article = request.form['a_article']
+		try: 
+			db.session.commit()
+			response = jsonify({'success':True})
+			return response
+		except:
+			response = jsonify({'success':False})
+			return response
