@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Update from "./Update";
 import Write from "./Write";
+import { Reply } from "./Reply";
 
 
 export const ArticleView = (props) => {
@@ -22,10 +23,10 @@ useEffect(() => {
         let data = {
             aid: articleId,
         }
-        console.log("hi")
-        console.log(articleId)
+        // console.log("hi")
+        // console.log(articleId)
 
-        axios.post("http://localhost:5000/board/article",JSON.stringify(data), {
+        axios.post(`http://localhost:5000/article`,JSON.stringify(data), {
             headers: {
                 "Content-Type": "application/json",
                 "Connection": "keep-alive"
@@ -65,7 +66,7 @@ useEffect(() => {
         aid: articleId,
     }
         
-    axios.post("http://localhost:5000/board/delete", 
+    axios.delete(`http://localhost:5000/article?aid=${articleId}`, 
     data
     )
         .then((res) => {
@@ -118,6 +119,11 @@ useEffect(() => {
                             <tr>
                                 <td colSpan={2}>
                                 <div style={{height:'1px', backgroundColor:'#46536B', width:'100%'}}></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan={2} align="center">
+                                <Reply/>
                                 </td>
                             </tr>
                         </tbody>

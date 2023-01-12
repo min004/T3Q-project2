@@ -19,10 +19,10 @@ class Update extends Component {
     update = (props) => {
         let data = {
             aid: props.aid,
-            subject: this.state.subject,
-            content: this.state.content,
+            subject: this.props.subject,
+            content: this.props.content,
         }
-        Axios.post("http://localhost:5000/board/article/edit", 
+        Axios.post(`http://localhost:5000/contents/${props.aid}`, 
             JSON.stringify(data)
         )
             .then((res) => {
