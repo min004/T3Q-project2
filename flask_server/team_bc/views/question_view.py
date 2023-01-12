@@ -71,7 +71,7 @@ def get_article():
     return article.to_dict()
 
 
-@bp.route('/article/edit/<aid>', methods=['GET', 'POST'])
+@bp.route('/article/edit', methods=['GET', 'POST'])
 def edit_article(aid):
 	article = Question.query.get_or_404(aid)
 	if request.method == 'POST':

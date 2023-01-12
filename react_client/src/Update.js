@@ -18,10 +18,11 @@ class Update extends Component {
     
     update = (props) => {
         let data = {
+            aid: props.aid,
             subject: this.state.subject,
             content: this.state.content,
         }
-        Axios.put("http://localhost:5000/board/update", 
+        Axios.post("http://localhost:5000/board/article/edit", 
             JSON.stringify(data)
         )
             .then((res) => {
@@ -45,7 +46,6 @@ class Update extends Component {
 
     render() {
         return (
-            <div className="article-board">
                 <div>
                     <Form.Group className="mb-3" controlId="subject">
                         <Form.Control style={{width:'72vw'}}type="text" onChange={this.handleChange} defaultValue={this.props.title} />
@@ -56,13 +56,12 @@ class Update extends Component {
                     {/* <Button onClick={() => props.setWriting('False')}>취소</Button> */}
 
                     <Button variant="info" onClick={this.update}>
-                    작성완료
+                    수정완료
                     </Button>
                     <button className="link-btn" onClick={() => window.location.href = "/board"}>
                         취소
                     </button>
                 </div>
-            </div>
         );
     }
 }

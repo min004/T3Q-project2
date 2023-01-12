@@ -132,7 +132,7 @@ useEffect(() => {
                     <Button variant="info">글쓰기</Button> */}
                 </div>
                 :
-                <Update title={title}/>
+                <Update aid={articleId} title={title} content={content}/>
                 }
                 </div>
             );
