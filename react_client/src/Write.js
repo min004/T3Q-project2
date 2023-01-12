@@ -25,7 +25,7 @@ class Write extends Component {
                 console.log(res);
                 console.log(this.state)
                 // console.log(this.state.content)
-                window.location.href = "/hello"
+                window.location.href = "/board"
             })
             .catch((e) => {
                 // console.log(data)
@@ -78,7 +78,7 @@ class Write extends Component {
                     <Button variant="info" onClick={this.state.isModifyMode ? this.write : this.write}>
                     작성완료
                     </Button>
-                    <button className="link-btn" onClick={() => window.location.href = "/hello"}>
+                    <button className="link-btn" onClick={() => window.location.href = "/board"}>
                         취소
                     </button>
                 </div>

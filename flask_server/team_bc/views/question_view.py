@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, url_for, redirect
-from flask import request
+from flask import request, jsonify
 import json
 from flask import Response
 
@@ -55,3 +55,16 @@ def delete():
     db.session.delete(question)
     db.session.commit()
     return Response("{'status':'200'}", status=200, mimetype='application/json')
+
+
+@bp.route('/article', methods=['POST'])
+def get_article():
+    aid = request.get_json()['aid']
+    print(aid)
+    article = Question.query.get(aid)
+    print(article)
+    if article:
+        success = True
+    else:
+        success = False
+    return article.to_dict()

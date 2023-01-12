@@ -5,8 +5,9 @@ import Button from "react-bootstrap/Button";
 
 
 export const ArticleView = (props) => {
-const articleId_temp = decodeURI(window.location.href).split('http://localhost:3000/article/').reverse()[0];
-const articleId = articleId_temp.split('/')[0] - 1;
+const articleId_temp = decodeURI(window.location.href).split('http://localhost:3000/article?aid=').reverse()[0];
+const articleId = articleId_temp.split('/')[0];
+
 const [state, setState] = useState({article: [],});
 const [id, setId] = useState([''])
 const [title, setTitle] = useState([''])
@@ -16,15 +17,30 @@ const [content, setContent] = useState([''])
 
 
 useEffect(() => {
-    
-        axios.get("http://localhost:5000/board/list", {})
+        let data = {
+            aid: articleId,
+        }
+        console.log("hi")
+        console.log(articleId)
+
+        axios.post("http://localhost:5000/board/article",JSON.stringify(data), {
+            headers: {
+                "Content-Type": "application/json",
+                "Connection": "keep-alive"
+            },
+        })
             .then((res) => {
-                const idx = Object.keys(res.data)
-                const data  = res.data[idx];
+                // const idx = res.data.find(function(item, i){
+                //     if(item.id === articleId){
+                //       idx = i;
+                //       return i;
+                //     }
+                //   });
+                const data  = res.data;
                 // setState({
                 //     article: data,
                 // });
-                console.log(idx)
+                // console.log(data)
                 setId(data['id'])
                 setTitle(data['subject'])
                 setRegisterId(data['creator'])
@@ -32,6 +48,7 @@ useEffect(() => {
                 setRegisteDate(data['create_date'])
             })
             .catch((e) => {
+                console.log(data)
                 console.error(e);
             });
     
@@ -41,7 +58,7 @@ useEffect(() => {
   function delete_article(e) {
     e.preventDefault();
     let data = {
-        aid: articleId-1,
+        aid: articleId,
     }
         
     axios.post("http://localhost:5000/board/delete", 
@@ -50,7 +67,7 @@ useEffect(() => {
         .then((res) => {
             console.log(res);
             console.log(data)
-            window.location.href = "/hello"
+            window.location.href = "/board"
         })
         .catch((e) => {
             // console.log(data)
@@ -103,7 +120,7 @@ useEffect(() => {
                     style={{marginLeft: '0vh'}} onClick={() => window.location.href = "/write"}>글쓰기</Button> */}
                     <Button 
                     style={{marginLeft: '0vh'}} onClick={delete_article}>삭제</Button>
-                    <Button style={{marginLeft: '80%'}} onClick={() => window.location.href = "/hello"}>목록으로</Button> 
+                    <Button style={{marginLeft: '80%'}} onClick={() => window.location.href = "/board"}>목록으로</Button> 
                     {/* <Button variant="secondary">수정하기</Button>
                     <Button variant="danger">삭제하기</Button>
                     <Button variant="info">글쓰기</Button> */}

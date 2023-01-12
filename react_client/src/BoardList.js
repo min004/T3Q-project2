@@ -13,7 +13,7 @@ const Board = ({
     return (
         <tr>
             <td>{id}</td>
-            <td width="60%"><Link to={`/article/${id}`}>{title}</Link></td>
+            <td width="60%"><Link to={`/article?aid=${id}`}>{title}</Link></td>
             <td>{registerId}</td>
             <td>{registerDate}</td>
         </tr>

@@ -4,7 +4,7 @@ export const API = {
   LOGIN: `${BASE_URL}/phishing/login`,
   LOGOUT: `${BASE_URL}/phishing/logout`,
   REGISTER: `${BASE_URL}/phishing/register`,
-  ARTICLES: `${BASE_URL}/phishing/hello`,
+  ARTICLES: `${BASE_URL}/phishing/board`,
   CHECK: `${BASE_URL}/phishing/check`,
   GETLIST: `${BASE_URL}/board/list`,
   WRITE: `${BASE_URL}/board/write`,

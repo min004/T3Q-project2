@@ -30,9 +30,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/hello" element={<Hello/>}/>
+                <Route path="/board" element={<Hello/>}/>
                 <Route path="/write" element={<Write/>}/>
-                <Route exact path="/article/:no" element={<ArticleView/>} />
+                <Route path="/article" element={<ArticleView/>} />
             </Routes>
         </BrowserRouter>
         </div>

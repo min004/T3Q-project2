@@ -38,7 +38,7 @@ export const Login = (props) => {
                 console.log(res)
             if (res.status === 200) {
                 alert("로그인 성공")
-                navigate("/hello")
+                navigate("/board")
             }
         }).catch(function (e) {
             console.log(e)
