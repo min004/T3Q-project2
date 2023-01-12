@@ -16,15 +16,15 @@ const [content, setContent] = useState([''])
 
 
 useEffect(() => {
-    console.log("렌더링 될때마다 실행");
     
         axios.get("http://localhost:5000/board/list", {})
             .then((res) => {
-                const data  = res.data[articleId];
+                const idx = Object.keys(res.data)
+                const data  = res.data[idx];
                 // setState({
                 //     article: data,
                 // });
-                // console.log(data)
+                console.log(idx)
                 setId(data['id'])
                 setTitle(data['subject'])
                 setRegisterId(data['creator'])
@@ -36,6 +36,29 @@ useEffect(() => {
             });
     
   },[]);
+
+
+  function delete_article(e) {
+    e.preventDefault();
+    let data = {
+        aid: articleId-1,
+    }
+        
+    axios.post("http://localhost:5000/board/delete", 
+    data
+    )
+        .then((res) => {
+            console.log(res);
+            console.log(data)
+            window.location.href = "/hello"
+        })
+        .catch((e) => {
+            // console.log(data)
+            console.error(e);
+        });
+        
+
+  }
         /**
          */
             return (
@@ -76,8 +99,10 @@ useEffect(() => {
                             </tr>
                         </tbody>
                     </Table>
+                    {/* <Button 
+                    style={{marginLeft: '0vh'}} onClick={() => window.location.href = "/write"}>글쓰기</Button> */}
                     <Button 
-                    style={{marginLeft: '0vh'}} onClick={() => window.location.href = "/write"}>글쓰기</Button>
+                    style={{marginLeft: '0vh'}} onClick={delete_article}>삭제</Button>
                     <Button style={{marginLeft: '80%'}} onClick={() => window.location.href = "/hello"}>목록으로</Button> 
                     {/* <Button variant="secondary">수정하기</Button>
                     <Button variant="danger">삭제하기</Button>

@@ -46,12 +46,12 @@ def create():
 #     return Response("{'status':'200'}", status=200, mimetype='application/json')
 
 
-# @bp.route('/delete', methods=('POST',))
-# def delete():
-#     dic_data = json.loads(request.data)
-#     question_id = dic_data["id"]
-#     question = Question.query.get(question_id)
-#     from team_bc import db
-#     db.session.delete(question)
-#     db.session.commit()
-#     return Response("{'status':'200'}", status=200, mimetype='application/json')
+@bp.route('/delete', methods=('POST',))
+def delete():
+    dic_data = json.loads(request.data)
+    question_id = dic_data["aid"]
+    question = Question.query.get(question_id)
+    from team_bc import db
+    db.session.delete(question)
+    db.session.commit()
+    return Response("{'status':'200'}", status=200, mimetype='application/json')

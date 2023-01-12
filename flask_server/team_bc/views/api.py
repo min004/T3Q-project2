@@ -48,10 +48,12 @@ def userLogin():
     data = request.get_json()
     user_id = data['id'].strip()
     password = data['pw'].strip()
-    info = Information.query.get(user_id)
+
     if user_id != "" and password != "":
+        info = Information.query.filter_by(id=user_id).first()
         if info and info.password == password:
-            session[user_id] = user_id
+            session['user_id'] = user_id
+            session['name'] = info.name
             print(session)
             return jsonify({"session_key": user_id})
         else:
@@ -121,13 +123,12 @@ def get_counts():
     response.status_code = 200
     return response
 
-
 @bp.route('/check', methods=['POST'])
 def check():
     data = request.get_json()
-    user_id = data['user_id']
+
     try:
-        if data['session_key'] != session[user_id]:
+        if data['session_key'] != session['user_id']:
             response = jsonify()
             response.status_code = 400
 
@@ -153,3 +154,13 @@ def create():
     db.session.add(q)
     db.session.commit()
     return Response("{'status':'200'}", status=200, mimetype='application/json')
+
+@bp.route('/logout',methods=['GET'])
+def logout():
+    data = request.get_json()
+
+    if data['session_key'] != session['user_id']:
+        session.pop('userid',None)
+        response = jsonify()
+        response.status_code = 403
+    return response
