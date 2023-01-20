@@ -1,20 +1,14 @@
-import json
+import flask_login
 import psycopg2
 from flask import request, jsonify, Blueprint, Response
-from team_bc.models.question import Question
+from flask_login import login_user, login_required, logout_user
 from flask_session import Session
 from sqlalchemy.exc import IntegrityError
 from flask import session
+
+from team_bc import login_manager
 from team_bc.models.Infomation import Information
 from psycopg2.errors import UniqueViolation
-
-# from models import Phishing
-
-# 명령어
-# flask db init
-# flask db migrate
-# flask db upgrade
-
 
 # create a table
 
@@ -41,21 +35,24 @@ from psycopg2.errors import UniqueViolation
 #     return render_template('index.js')
 
 
-# 1. register -> post, login -> post
-bp = Blueprint('api', __name__, url_prefix='/api/phishing/')
+bp = Blueprint('api', __name__, url_prefix='/api/')
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Information.query.get(user_id)
+
+
 @bp.route('/login', methods=['POST'])
 def userLogin():
     data = request.get_json()
     user_id = data['id'].strip()
     password = data['pw'].strip()
-
+    info = Information.query.get(user_id)
     if user_id != "" and password != "":
-        info = Information.query.filter_by(id=user_id).first()
         if info and info.password == password:
-            session['user_id'] = user_id
-            session['name'] = info.name
-            print(session)
-            return jsonify({"session_key": user_id})
+            login_user(info)
+            return jsonify()
         else:
             responce = jsonify({"error": "error"})
             responce.status_code = 401
@@ -64,6 +61,18 @@ def userLogin():
         responce = jsonify()
         responce.status_code = 400
         return responce
+
+@bp.route('/getusername', methods=['POST'])
+def getname():
+    data = request.get_json()
+    user_id = data['id'].strip()
+    password = data['pw'].strip()
+    info = Information.query.get(user_id)
+    if user_id != "" and password != "":
+        if info and info.password == password:
+            res = Information.query.get(user_id).name
+            return res
+
 
 
 @bp.route('/register', methods=['POST'])
@@ -74,10 +83,11 @@ def register():
     password = data['pw'].strip()
     email = data['email'].strip()
     name = data['name'].strip()
-    print(session)
     # -------------------------------------------- (1) response (원래 만들었던 server.py 참고하여 작성...?) -> (2) UI 작성
     # ---------------------------------- DataBase 와 연결
     try:
+        if id == "" or password == "" or email == "" or name == "":
+            raise ValueError
         info = Information(id=id, password=password, email=email, name=name)
         from team_bc import db
         db.session.add(info)
@@ -85,82 +95,18 @@ def register():
         response = jsonify({
             "status": "success"
         })
-    except IntegrityError as e:
-        response = jsonify({
-            "error": "Bad_Request",
-            "detail": e.orig.diag.message_detail,
-            "code": 1
-        })
-        response.status_code = 400
-
-    return response
-
-
-# ----------------------------------------- route -> post (login)
-@bp.route('/database', methods=['GET', 'POST'])
-def get_database():
-    information_all = Information.get_all()
-    results = []
-
-    for info in information_all:
-        obj = {
-            'url': info.url
-        }
-        results.append(obj)
-    response = jsonify(results)
-    response.status_code = 200
-    return response
-
-
-# 데이터베이스 연결
-@bp.route('/count', methods=['GET'])
-def get_counts():
-    information_all = Information.get_all()
-    count = len(information_all)
-    response = jsonify({
-        'count': count
-    })
-    response.status_code = 200
-    return response
-
-@bp.route('/check', methods=['POST'])
-def check():
-    data = request.get_json()
-
-    try:
-        if data['session_key'] != session['user_id']:
-            response = jsonify()
-            response.status_code = 400
-
-        else:
-            response = jsonify()
-
-    except KeyError:
+    except IntegrityError:
         response = jsonify()
         response.status_code = 400
-    return response
-
-
-@bp.route('/create', methods=('POST',))
-def create():
-    
-    dic_data = json.loads(request.data)
-    # print(dic_data)
-    subject = dic_data["subject"]
-    content = dic_data["content"]
-    from datetime import datetime
-    q = Question(subject=subject, content=content, create_date=datetime.now())
-    from team_bc import db
-    db.session.add(q)
-    db.session.commit()
-    return Response("{'status':'200'}", status=200, mimetype='application/json')
-
-@bp.route('/logout',methods=['GET'])
-def logout():
-    data = request.get_json()
-
-    if data['session_key'] != session['user_id']:
-        session.pop('userid',None)
+    except ValueError:
         response = jsonify()
         response.status_code = 403
+
     return response
+
+
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return jsonify("로그아웃 성공")

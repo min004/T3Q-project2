@@ -1,86 +1,108 @@
-from flask import render_template, Blueprint, url_for, redirect
-from flask import request, jsonify
+import flask_login
+import datetime
 import json
+from flask import render_template, Blueprint, url_for, redirect, jsonify
+from flask import request
 from flask import Response
-
+from flask_login import login_required
+from team_bc.models.Infomation import Information
 from team_bc.models.question import Question
 
 bp = Blueprint('question', __name__, url_prefix='/board')
 
 
-@bp.route('/list', methods=('GET',))
+@bp.route('/list')
+@login_required
 def _list():
+    from flask import session
     question_list = Question.query.all()
     result = []
+    re = []
     for i in question_list:
-        result.append(i.to_dict())
-    result.reverse()
-    return result
+        part = i.to_dict()
+        part.pop("content")
+        if part["flag"]:
+            result.append(i.to_dict())
+    return result[::-1]
 
 
-
-@bp.route('/create', methods=('POST',))
+@bp.route('/create', methods=(['POST']))
+@login_required
 def create():
     dic_data = json.loads(request.data)
     subject = dic_data["subject"]
     content = dic_data["content"]
-    creator = "테스트 유저"
-    from datetime import datetime
-    q = Question(subject=subject, creator=creator, content=content, create_date=datetime.now())
+    from flask import session
+    user_id = session['_user_id']
+    creator = Information.query.get(user_id).name
+    KST = datetime.timezone(datetime.timedelta(hours=9))
+    q = Question(subject=subject, creator=creator, content=content, create_date=str(datetime.datetime.now(KST)), user_id=user_id)
     from team_bc import db
     db.session.add(q)
     db.session.commit()
-    return Response("{'status':'200'}", status=200, mimetype='application/json')
+    return jsonify()
 
-# @bp.route('/modify', methods=('POST',))
-# def modify():
-#     dic_data = json.loads(request.data)
-#     subject = dic_data["subject"]
-#     content = dic_data["content"]
-#     question_id = dic_data["id"]
-#     question = Question.query.get(question_id)
-#     question.subject = subject
-#     question.content = content
 
-#     from team_bc import db
-#     db.session.commit()
-#     return Response("{'status':'200'}", status=200, mimetype='application/json')
+@bp.route('/update', methods=['PUT'])
+@login_required
+def modify():
+    dic_data = json.loads(request.data)
+    subject = dic_data["subject"]
+    content = dic_data["content"]
+    question_id = dic_data["aid"]
+    question = Question.query.get(question_id)
+    if str(flask_login.current_user.id) == str(question.user_id):
+        question.subject = subject
+        question.content = content
+        from team_bc import db
+        db.session.commit()
+        response = jsonify()
+    else:
+        response = jsonify()
+        response.status_code = 401
+
+    return response
 
 
 @bp.route('/delete', methods=('POST',))
+@login_required
 def delete():
     dic_data = json.loads(request.data)
     question_id = dic_data["aid"]
     question = Question.query.get(question_id)
-    from team_bc import db
-    db.session.delete(question)
-    db.session.commit()
-    return Response("{'status':'200'}", status=200, mimetype='application/json')
+    if str(flask_login.current_user.id) == str(question.user_id):
+        from team_bc import db
+        db.session.delete(question)
+        db.session.commit()
+        res = Response("", status=200, mimetype='application/json')
+    else:
+        res = Response("", status=401, mimetype='application/json')
 
+    return res
+
+@bp.route("/contents/<int:a_aid>", methods=["DELETE",])
+def delete_content(a_aid):
+    question = Question.query.get(a_aid)
+    if str(flask_login.current_user.id) == str(question.user_id):
+        from team_bc import db
+        db.session.delete(question)
+        db.session.commit()
+        res = Response("", status=200, mimetype='application/json')
+    else:
+        res = Response("", status=401, mimetype='application/json')
+
+    return res
 
 @bp.route('/article', methods=['POST'])
+@login_required
 def get_article():
     aid = request.get_json()['aid']
-    print(aid)
     article = Question.query.get(aid)
-    print(article)
-    if article:
-        success = True
+    res = article.to_dict()
+    if str(flask_login.current_user.id) == str(article.user_id):
+        res['modifiable'] = 'true'
     else:
-        success = False
-    return article.to_dict()
-
-
-@bp.route('/article/edit/<aid>', methods=['GET', 'POST'])
-def edit_article(aid):
-	article = Question.query.get_or_404(aid)
-	if request.method == 'POST':
-		article.a_title = request.form['a_title']
-		article.a_article = request.form['a_article']
-		try: 
-			db.session.commit()
-			response = jsonify({'success':True})
-			return response
-		except:
-			response = jsonify({'success':False})
-			return response
+        res['modifiable'] = 'false'
+    
+    return res
+    # return article.to_dict()

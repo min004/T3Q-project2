@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import axios from 'axios';
 import {useCookies} from "react-cookie";
 import {useNavigate} from "react-router-dom";
+import {API} from "./config";
+// import App from "./App";
 
 export const Login = (props) => {
     const [ID, setID] = useState('');
@@ -10,6 +12,7 @@ export const Login = (props) => {
     // const navigate = useNavigate()
     const [cookies, setCookie] = useCookies(['session_key'])
     const navigate = useNavigate()
+    const [isLogin, setIsLogin] = useState(false)
     const handleSubmit = (e) => {
         e.preventDefault();
     }
@@ -21,8 +24,20 @@ export const Login = (props) => {
             id: ID,
             pw: pass,
         }
+        // axios.post(API.GETNAME,
+        //     JSON.stringify(data), {
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         }
+        //     })
+        //     .then((res) => {
+        //         alert(res)
+        //     });
 
-        axios.post('http://localhost:5000/api/phishing/login',
+        const address = API.LOGIN;
+        
+
+        axios.post(address,
             JSON.stringify(data), {
                 headers: {
                     "Content-Type": "application/json",
@@ -30,17 +45,22 @@ export const Login = (props) => {
                 },
             })
             .then((res) => {
-                console.log(res.data.session_key)
-                setCookie('session_key', {
-                    "session_key": res.data.session_key,
-                    "user_id": ID
-                })
                 console.log(res)
-            if (res.status === 200) {
-                alert("로그인 성공")
-                navigate("/board")
-            }
-        }).catch(function (e) {
+                if (res.status === 200) {
+                    axios.post(API.GETNAME,
+                        JSON.stringify(data), {
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }).then((res) => {
+                            props.settingName(res.data)
+                        });
+                    alert("로그인 성공")
+                    // props.settingLogin(true)
+                    // window.location.href = "/board"
+                    navigate("/board")
+                }
+            }).catch(function (e) {
             console.log(e)
             if (e.request.status === 401) {
                 alert("입력하신 정보가 잘못되었습니다.")

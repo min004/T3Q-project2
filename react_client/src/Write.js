@@ -2,6 +2,8 @@ import { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Axios from "axios";
+import { BOARD } from "./config";
+import {Navigate} from "react-router-dom"
 
 /**
  * Write class
@@ -9,14 +11,27 @@ import Axios from "axios";
 class Write extends Component {
    
     state = {
-        isModifyMode: false,
+        // isModifyMode: false,
         subject: "",
         content: "",
+        // cancel: null,
+        done: null,
     };
-    
+//     let today = new Date();
+// document.write(today)
+    onCancel = () => {
+        // this.setState({
+        //     cancel: true
+        // })
+        window.location.href = "/board"
+    }
+
     write = () => {
         
-        Axios.post("http://localhost:5000/board/create", 
+        if (this.state.content !== '' &
+        this.state.subject !== '') {
+            if (this.state.subject.length < 30 & this.state.content.length < 3000) {
+        Axios.post(BOARD.WRITE, 
            {subject: this.state.subject,
             content: this.state.content
            }
@@ -24,22 +39,27 @@ class Write extends Component {
             .then((res) => {
                 console.log(res);
                 console.log(this.state)
-                // console.log(this.state.content)
-                window.location.href = "/board"
+                this.setState({done: true})
             })
             .catch((e) => {
-                // console.log(data)
                 console.error(e);
-            });
-            
+            });}
+            else {
+                alert('제목(30자)이나 본문(3000자)의 글자수 제한을 초과하였습니다.')
+            }
+        } else {
+            alert('제목과 내용을 입력해 주세요.')
+        }
     };
     
     update = () => {
+        if (this.state.content !== '' &
+        this.state.subject !== '') {
         let data = {
             subject: this.state.subject,
             content: this.state.content,
         }
-        Axios.put("http://localhost:5000/board/update", 
+        Axios.put(BOARD.UPDATE, 
             JSON.stringify(data)
         )
             .then((res) => {
@@ -48,10 +68,11 @@ class Write extends Component {
             .catch((e) => {
                 console.error(e);
             });
-            
+        } else {
+            alert('제목과 내용을 입력해 주세요.')
+        }    
     };
     
-    // eslint-disable-next-line
     handleChange = (e) => {
         this.setState({
             
@@ -62,6 +83,7 @@ class Write extends Component {
 
 
     render() {
+        const {done} = this.state;
         return (
             <div className="article-board">
                 <div>
@@ -70,17 +92,20 @@ class Write extends Component {
                         <Form.Control style={{width:'72vw'}}type="text" onChange={this.handleChange} placeholder="제목" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="content">
-                        {/* <Form.Label></Form.Label> */}
-                        <Form.Control style={{width:'72vw', height:'20vw', borderRadius:'20px', padding:'1rem'}}as="textarea" onChange={this.handleChange} placeholder="내용" />
+                        <Form.Control style={{width:'72vw', height:'30vw', borderRadius:'20px', padding:'1rem'}}as="textarea" onChange={this.handleChange} placeholder="내용" />
                     </Form.Group>
-                    {/* <Button onClick={() => props.setWriting('False')}>취소</Button> */}
-
+                    <div className="article-view-bottom">
+                    <button className="del-btn" onClick={() => window.location.href = "/board"}>
+                        취소
+                    </button>
+                    
                     <Button variant="info" onClick={this.state.isModifyMode ? this.write : this.write}>
                     작성완료
                     </Button>
-                    <button className="link-btn" onClick={() => window.location.href = "/board"}>
-                        취소
-                    </button>
+                    {done === true && <Navigate to="/board" replace={true} />}
+                    </div>
+                    
+                    
                 </div>
             </div>
         );

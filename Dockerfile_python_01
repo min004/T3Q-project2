@@ -1,0 +1,18 @@
+FROM python:3
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt .
+
+ENV FLASK_APP = .flask_server/team_bc/__init__.py
+
+ENV FLASK_ENV = development
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY /flask_server .
+
+EXPOSE 5000
+
+CMD ["python", "-m", "flask", "run","--host=0.0.0.0"]
+
