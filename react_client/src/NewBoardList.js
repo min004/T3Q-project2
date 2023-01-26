@@ -16,19 +16,23 @@ export const NewBoardList = (props) => {
     const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
     const [currentPosts, setCurrentPosts] = useState(0);
     const [writing, setWriting] = useState(null)
+    const [nowLoading, setNowLoading] = useState(false)
 
     //items호출
     
     
 
     useEffect(() => {
+        setNowLoading(true)
         async function getData() {
         await axios.get(BOARD.GETLIST, {})
         .then((res) => {
             setItems(res.data)
+            setNowLoading(false)
         })
         .catch((e) => {
             console.error(e);
+            
         });
         }
         getData();
@@ -39,6 +43,7 @@ export const NewBoardList = (props) => {
     ]);
 
     useEffect(() => {
+        
         setCount(items.length);
         setIndexOfLastPost(currentpage * postPerPage);
         setIndexOfFirstPost(indexOfLastPost - postPerPage);
@@ -47,10 +52,12 @@ export const NewBoardList = (props) => {
 
     const setPage = (e) => {
     setCurrentpage(e);
-    console.log(currentpage)
+    // console.log(currentpage)
     };
 
     return (
+        <>
+        {nowLoading === false ? 
         <div className="board-BG">
         <div className="board-title"><b>Q&A</b></div>
         <div>
@@ -89,7 +96,11 @@ export const NewBoardList = (props) => {
                         <tr>
                             <td>{item.id}</td>
                             <td width={"50%"}><Link to={`/article?aid=${item.id}`} state={{id: item.id}}>
-                                {item.subject.slice(0,25)} [{item.answer_set.length}]</Link></td>
+                                {item.subject.slice(0,25)} 
+                                {item.img_url.length > 0 && <text className="board-list-text">  <img style={{height:'17px', marginBottom:'-3px'}} src="photo.png"/></text>}
+                                {item.answer_set.length > 0 && <text className="board-list-text"><b>  [{item.answer_set.length}]</b></text>}
+                                
+                                </Link></td>
                             <td width={"20%"}>{item.creator}</td>
                             <td>{item.create_date}</td>
                         </tr>
@@ -106,5 +117,9 @@ export const NewBoardList = (props) => {
         </div>
         <Paging page={currentpage} count={count} setPage={setPage} />
     </div>
+        : <>
+        <img className="now-loading" src="hourglass.png" /><p/><h2>Now Loading...</h2>
+        </> }
+        </>
     )
 }

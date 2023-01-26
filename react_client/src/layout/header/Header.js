@@ -33,7 +33,7 @@ const Header = (props) => {
     removeCookie('session')
     setIsLogin(false)
     console.log(isLogin)
-    navigate('/')
+    window.location.href = "/"
 }
 
     return (

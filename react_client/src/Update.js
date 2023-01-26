@@ -55,7 +55,7 @@ export const Update = (props) => {
     if (content !== '' & 
         subject !== '') {
             if (subject.length <= 30 & content.length <= 10000) {
-                axios.post(BOARD.WRITE, data)
+                axios.put(BOARD.UPDATE, data)
                 .then((res) => {
                     console.log(res);
                     navigate('/board')

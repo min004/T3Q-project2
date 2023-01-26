@@ -11,6 +11,11 @@
   align-items: center;
 }
 
+.now-loading {
+  align-self: center;
+  width: 112px;
+}
+
 .Logo {
   display: flex;
   width: 8vh;
@@ -34,6 +39,7 @@
   color: #46536B;
   background-image: linear-gradient(2000deg, #fbe374, #e66daf);
 }
+
 
 
 .login-form {
@@ -201,6 +207,10 @@
   
   width: 100%;
   min-width: 100px;
+}
+
+.board-list-text {
+  color: #46536B
 }
 
 .board-list-bottom {

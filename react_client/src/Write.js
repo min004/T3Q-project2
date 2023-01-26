@@ -28,7 +28,7 @@ export const Write = (props) => {
         formdata.append('file', files);
         formdata.append("upload_preset", "uxapbg5l");
         const cloudName = 'dqf3r4cli'
-        axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formdata, { withCredentials: false })
+        axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, formdata, { withCredentials: false })
         .then(resp => {
             console.log(resp.data.url)
             setUrl(resp.data.url)

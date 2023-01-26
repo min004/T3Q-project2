@@ -23,9 +23,11 @@ export const ArticleView = (props) => {
     const [isModifyMode, setModifyMode] = useState('False')
     const [name, setName] = useState(null)
     const [imgurl, setImgurl] = useState('')
+    const [nowLoading, setNowLoading] = useState(false)
     
 
     useEffect(() => {
+        setNowLoading(true)
         let data = {
             aid: articleId,
         }
@@ -47,6 +49,7 @@ export const ArticleView = (props) => {
                 setImgurl(data['img_url'])
 
                 console.log(imgurl)
+                setNowLoading(false)
             })
             .catch((e) => {
                 // console.log(e)
@@ -91,6 +94,7 @@ export const ArticleView = (props) => {
      */
     return (
         <div className="article-board">
+            {nowLoading === false ? <>
             {isModifyMode === 'False' ?
                 // <div>False</div>
                 <div>
@@ -160,7 +164,10 @@ export const ArticleView = (props) => {
                 </div>
                 :
                 <Update aid={articleId} title={title} content={content} imgurl={imgurl}/>
-            }
+            }</>
+        : <>
+        <img className="now-loading" src="hourglass.png" /><p/><h2>Now Loading...</h2>
+        </>}
         </div>
     );
 

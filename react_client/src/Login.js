@@ -61,8 +61,8 @@ export const Login = (props) => {
                         });
                     alert("로그인 성공")
                     // props.settingLogin(true)
-                    // window.location.href = "/board"
-                    navigate("/board")
+                    window.location.href = "/board"
+                    // navigate("/board")
                 }
             }).catch(function (e) {
             console.log(e)

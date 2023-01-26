@@ -1,6 +1,6 @@
-// const BASE_URL = 'http://172.16.16.132:30915';
+const BASE_URL = 'http://172.16.16.132:30915';
 
-const BASE_URL = 'http://localhost:5000';
+// const BASE_URL = 'http://localhost:5000';
 export const API = {
     LOGIN: `${BASE_URL}/api/login`,
     LOGOUT: `$${BASE_URL}/api/logout`,

@@ -48,13 +48,16 @@ def create():
 @login_required
 def modify():
     dic_data = json.loads(request.data)
+    # KST = datetime.timezone(datetime.timedelta(hours=9))
     subject = dic_data["subject"]
     content = dic_data["content"]
     question_id = dic_data["aid"]
+    # create_date = str(datetime.datetime.now(KST))
     question = Question.query.get(question_id)
     if str(flask_login.current_user.id) == str(question.user_id):
         question.subject = subject
         question.content = content
+        # question.create_date = create_date
         from team_bc import db
         db.session.commit()
         response = jsonify()
