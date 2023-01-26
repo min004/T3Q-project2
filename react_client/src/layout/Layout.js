@@ -15,7 +15,7 @@ const Layout = (props) => {
 
   return (
     <div>
-      <Header name={name}/>
+      <Header isLogin={isLogin} name={name}/>
       
       <main>
         {props.children}

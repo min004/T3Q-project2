@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useCookies} from "react-cookie";
 import BoardList from './BoardList';
 import {NewBoardList} from './NewBoardList'
-import Write from "./Write";
+import {Write} from "./Write";
 import Button from "react-bootstrap/esm/Button";
 import {API} from "./config";
 

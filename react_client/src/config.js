@@ -1,6 +1,6 @@
-const BASE_URL = 'http://172.16.16.132:30915';
+// const BASE_URL = 'http://172.16.16.132:30915';
 
-// const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000';
 export const API = {
     LOGIN: `${BASE_URL}/api/login`,
     LOGOUT: `$${BASE_URL}/api/logout`,
@@ -12,7 +12,8 @@ export const BOARD = {
     WRITE: `${BASE_URL}/board/create`,
     UPDATE: `${BASE_URL}/board/update`,
     DELETE: `${BASE_URL}`,
-    ARTICLES: `${BASE_URL}/board/article`
+    ARTICLES: `${BASE_URL}/board/article`,
+    IMAGES: `${BASE_URL}/board/image`
 }
 
 export const COMMENT = {

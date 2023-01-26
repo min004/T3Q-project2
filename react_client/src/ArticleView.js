@@ -2,7 +2,7 @@ import React, {Component, useEffect, useState} from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Update from "./Update";
+import {Update} from "./Update";
 // import Write from "./Write";
 import {Reply} from "./Reply";
 import {API, BOARD} from "./config";
@@ -22,6 +22,7 @@ export const ArticleView = (props) => {
     const [isModifiable, setModifiable] = useState(['false'])
     const [isModifyMode, setModifyMode] = useState('False')
     const [name, setName] = useState(null)
+    const [imgurl, setImgurl] = useState('')
     
 
     useEffect(() => {
@@ -43,6 +44,9 @@ export const ArticleView = (props) => {
                 setContent(data['content'])
                 setRegisteDate(data['create_date'])
                 setModifiable(data['modifiable'])
+                setImgurl(data['img_url'])
+
+                console.log(imgurl)
             })
             .catch((e) => {
                 // console.log(e)
@@ -119,8 +123,10 @@ export const ArticleView = (props) => {
                             </td>
                         </tr>
                         <tr align="left" border-bottom='1px' padding='10px'>
-                            <td className="article-info" width="50px">내용</td>
-                            <td className="article-content">{content}</td>
+                            <td className="article-info" width="50px"></td>
+                            <td className="article-content">
+                                {imgurl && <img className="article-image" src={imgurl}/>}
+                                <p>{content}</p></td>
                         </tr>
                         <tr>
                             <td colSpan={2}>
@@ -153,7 +159,7 @@ export const ArticleView = (props) => {
                     </div>
                 </div>
                 :
-                <Update aid={articleId} title={title} content={content}/>
+                <Update aid={articleId} title={title} content={content} imgurl={imgurl}/>
             }
         </div>
     );

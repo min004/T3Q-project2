@@ -1,10 +1,6 @@
 import React, {Component, useEffect, useState} from "react";
 import Axios from "axios";
 import Table from "react-bootstrap/Table";
-// import Button from "react-bootstrap/Button";
-// import Update from "./Update";
-// import Write from "./Write";
-// import {Reply} from "./Reply";
 import {COMMENT} from "./config";
 
 
@@ -15,7 +11,7 @@ class ReplyView extends Component {
     state = {
         replyList: [],
     };
-
+// 댓글 목록 조회 //
     getList = (props) => {
         Axios.get(COMMENT.REPLYLIST + "/" + `${this.props.aid}`)
             .then((res) => {
@@ -28,6 +24,10 @@ class ReplyView extends Component {
                 console.error(e);
             });
     };
+////////////////////////
+
+
+// 댓글 삭제 //
     delCom = (prop) => {
         Axios.post(COMMENT.DELETE + "/" + `${this.props.aid}`, {id: prop}
         ).then((res) => {
@@ -86,16 +86,7 @@ class ReplyView extends Component {
 
         return (
             <div>
-                {/* <div style={{
-                    backgroundColor: '#46536B',
-                    paddingTop: '7px',
-                    // width: '100vh',
-                    color: 'white',
-                    height: '30px',
-                    justifyContent: 'center',
-                    borderRadius: '999px'
-                }}>Comment
-                </div> */}
+
                 <Table class='replyview' align="center" position="relative" width='100%'>
                     <tbody>
                         <tr>
@@ -122,10 +113,6 @@ class ReplyView extends Component {
                     }
                     </tbody>
                 </Table>
-                {/* <Button style={{marginLeft: '90vh'}} onClick={() => window.location.href = "/write"}>글쓰기</Button>  */}
-                {/* <Button variant="secondary">수정하기</Button>
-                <Button variant="danger">삭제하기</Button>
-                <Button variant="info">글쓰기</Button> */}
             </div>
         );
     }

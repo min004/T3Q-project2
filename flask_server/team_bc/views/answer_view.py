@@ -41,7 +41,7 @@ def show_comment(rid):
     result = []
     for ans in question.answer_set:
         ans_dict = ans.to_dict()
-        if str(flask_login.current_user.id) == str(ans_dict['user_id']):
+        if str(flask_login.current_user.id) == str(ans_dict['user_id']) or str(flask_login.current_user.id) == 'admin':
             ans_dict['modifiable'] = 'true'
         else:
             ans_dict['modifiable'] = 'false'
@@ -78,7 +78,7 @@ def getname():
 def delete_comment(rid):
     dic_data = json.loads(request.data)
     answer = Answer.query.filter(Answer.question_id == rid).filter(Answer.id == dic_data["id"]).one()
-    if str(flask_login.current_user.id) == str(answer.user_id):
+    if str(flask_login.current_user.id) == str(answer.user_id) or str(flask_login.current_user.id) == 'admin':
         from team_bc import db
         db.session.delete(answer)
         db.session.commit()

@@ -35,6 +35,7 @@
   background-image: linear-gradient(2000deg, #fbe374, #e66daf);
 }
 
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -47,18 +48,39 @@
 .article-content {
   padding: 5px;
 }
+/* 
+.img_box{
+  background-image: ;
+} */
+
+
+.img {
+  width: 286px;
+  height: 286px;
+  object-fit: scale-down;
+}
+
+.article-image {
+  width: 600px;
+  /* height: 800px; */
+  object-fit: scale-down;
+}
+
 
 .auth-form-container {
   display: flex;
   flex-direction: column;
+  max-width: 200px;
 }
 
 .article-board {
   display: flex;
   flex-direction: column;
+  max-width: 200px;
   min-width: 80vw;
   justify-content: center;
   white-space: pre-line;
+  padding: 30px;
 }
 
 .article-view-bottom {
@@ -70,6 +92,7 @@
   display: flex;
   justify-content: flex-start;
   width: 40%;
+  
 }
 
 .article-view-bottom-r {
@@ -78,9 +101,30 @@
   width: 60%;
 }
 
+.article-write {
+  /* display: flex; */
+  left: 0;
+  right: 0;
+}
+
+.article-write-content {
+  /* display: flex; */
+  left: 0;
+  right: 0;
+  /* width: 90%; */
+  height: 20vh;
+  border-radius: 20px;
+  padding: 1rem;
+}
+
 .register-form {
   display: flex;
   flex-direction: column;
+}
+
+.register-passvar {
+  color: #e66daf;
+  font-size: 9px;
 }
 
 .reply-count {
@@ -176,7 +220,8 @@
 
 @media screen and (min-width: 200px) {
   .article-board {
-    padding: 2rem;
+    /* display: flex; */
+    padding: 20px;
     border: 1px solid #dba1c8;
     border-radius: 30px;
     margin: 0.8rem;

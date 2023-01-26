@@ -5,12 +5,11 @@ import {Register} from "./Register";
 // import {useCookies} from "react-cookie";
 import {BrowserRouter, Route, Router, Routes, useNavigate} from "react-router-dom";
 import axios from "axios";
-import Write from "./Write";
+import {Write} from "./Write";
 import {ArticleView} from "./ArticleView";
 import {Main} from "./Main";
 import Layout from "./layout/Layout";
 import {COMMENT} from "./config";
-
 
 function App(props,{setUserNameIndex}) {
     const [currentForm, setCurrentForm] = useState('login');
@@ -38,6 +37,8 @@ function App(props,{setUserNameIndex}) {
         }
     
     useEffect(() => {
+        console.log(isLogin)
+        // if (isLogin !== false) {
         axios.get(COMMENT.REFRESH, {
             headers: {
                 "Content-Type": "application/json",
@@ -46,8 +47,10 @@ function App(props,{setUserNameIndex}) {
             // console.log(res.data)
             setName(res.data)
         })
-        
+    // } 
     }, [name]);
+
+
     const settingName = (n) => {
     if (name === null){
         setName(n)
@@ -62,7 +65,7 @@ function App(props,{setUserNameIndex}) {
         <BrowserRouter>
         <Layout name={name} isLogin={isLogin}>
             <Routes>
-                <Route path="/" element={<Login settingName={settingName}/>}/>
+                <Route path="/" element={<Login settingName={settingName} />}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/board" element={<Main/>}/>
                 <Route path="/write" element={<Write/>}/>

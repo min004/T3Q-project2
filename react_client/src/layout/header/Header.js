@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useCookies} from "react-cookie";
 import { API } from "../../config";
 import {Link} from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +12,8 @@ const Header = (props) => {
   // console.log(name)
   const [, , removeCookie] = useCookies()
   const [isLogin, setIsLogin] = useState(props.isLogin)
+  const navigate = useNavigate()
+
   function onLogout(e) {
     e.preventDefault();
 
@@ -20,7 +22,8 @@ const Header = (props) => {
     //     pw: pass,d\
     // }
 
-    axios.get(API.LOGOUT).then((res) => {
+    axios.get(API.LOGOUT, {}).then((res) => {
+      console.log(res)
         // setCookie('session_key', {
         //     "session_key": res.data.session_key,
         //     "user_id": ID
@@ -30,7 +33,7 @@ const Header = (props) => {
     removeCookie('session')
     setIsLogin(false)
     console.log(isLogin)
-    // window.location.href = "/"
+    navigate('/')
 }
 
     return (
@@ -39,7 +42,7 @@ const Header = (props) => {
         <img className="Logo" src="t3q.png" onClick={() => window.location.href = "/board"}/>
         </div>
         {
-        // isLogin === true && 
+        // isLogin !== undefined || isLogin !== false && 
         props.name !== null ?
         <div className="Info">
           {props.name}<b>님 환영합니다!</b>

@@ -34,6 +34,10 @@ export const Login = (props) => {
         //         alert(res)
         //     });
 
+       function onforgot() {
+            alert('저런.. 안됐네요...')
+        }
+
         const address = API.LOGIN;
         
 
@@ -93,6 +97,7 @@ export const Login = (props) => {
                     <button className="link-btn" onClick={() => window.location.href = "/register"}>
                         Register
                     </button>
+                    <p/><text className="register-passvar" style={{color:"#46536B80"}} onClick={() => alert('저런.. 안됐네요...')}>아이디나 비밀번호를 잊으셨나요?</text>
                     {/* <div> */}
                 </form>
             </div>

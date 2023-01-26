@@ -15,3 +15,4 @@ class Question(db.Model, SerializerMixin):
     content = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
     flag = db.Column(db.Boolean, default=True)
+    img_url = db.Column(db.Text())

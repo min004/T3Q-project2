@@ -32,11 +32,12 @@ def create():
     dic_data = json.loads(request.data)
     subject = dic_data["subject"]
     content = dic_data["content"]
+    img_url = dic_data["imgurl"]
     from flask import session
     user_id = session['_user_id']
     creator = Information.query.get(user_id).name
     KST = datetime.timezone(datetime.timedelta(hours=9))
-    q = Question(subject=subject, creator=creator, content=content, create_date=str(datetime.datetime.now(KST)), user_id=user_id)
+    q = Question(subject=subject, creator=creator, content=content, img_url=img_url, create_date=str(datetime.datetime.now(KST)), user_id=user_id)
     from team_bc import db
     db.session.add(q)
     db.session.commit()
@@ -83,7 +84,7 @@ def delete():
 @bp.route("/contents/<int:a_aid>", methods=["DELETE",])
 def delete_content(a_aid):
     question = Question.query.get(a_aid)
-    if str(flask_login.current_user.id) == str(question.user_id):
+    if str(flask_login.current_user.id) == str(question.user_id) or str(flask_login.current_user.id) == 'admin':
         from team_bc import db
         db.session.delete(question)
         db.session.commit()
@@ -99,7 +100,7 @@ def get_article():
     aid = request.get_json()['aid']
     article = Question.query.get(aid)
     res = article.to_dict()
-    if str(flask_login.current_user.id) == str(article.user_id):
+    if str(flask_login.current_user.id) == str(article.user_id) or str(flask_login.current_user.id) == 'admin':
         res['modifiable'] = 'true'
     else:
         res['modifiable'] = 'false'

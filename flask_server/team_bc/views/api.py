@@ -2,7 +2,7 @@ import flask_login
 import psycopg2
 from flask import request, jsonify, Blueprint, Response
 from flask_login import login_user, login_required, logout_user
-from flask_session import Session
+# from flask_session import Session
 from sqlalchemy.exc import IntegrityError
 from flask import session
 
@@ -105,8 +105,9 @@ def register():
     return response
 
 
-@bp.route('/logout')
+@bp.route('/logout', methods=['GET'])
 @login_required
 def logout():
     logout_user()
-    return jsonify("로그아웃 성공")
+    session.clear()
+    return 1

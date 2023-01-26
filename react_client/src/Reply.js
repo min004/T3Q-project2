@@ -16,7 +16,6 @@ export const Reply = (props) => {
         .then((res) => {
             const data = res.data;
             setCount(data)
-            // console.log(count)
         }).catch((e) => {
             console.error(e);
         });
