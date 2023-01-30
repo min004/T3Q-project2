@@ -35,7 +35,7 @@ function EditorBox(props) {
   };
   
   const onChange = () => {
-    const data = editorRef.current.getInstance().getMarkdown();
+    const data = editorRef.current.getInstance().getHTML();
     props.setContent(data);
     // console.log(data);
   };
