@@ -18,6 +18,8 @@ export const Update = (props) => {
     const [url, setUrl] = useState(props.imgurl)
     const [long, setLong] = useState(content.length)
     const navigate = useNavigate()
+    const [isWriting, setIsWriting] = useState(false);
+
 
     const onLoadFile = (e) => {
         const file = e.target.files[0];
@@ -45,10 +47,11 @@ export const Update = (props) => {
 
     const settingData = (n) => {
         setContent(n)
-        console.log(content)
+        // console.log(content)
     }
 
     function editing(e) {
+        setIsWriting(true)
         e.preventDefault();
 
         let data = {
@@ -60,19 +63,23 @@ export const Update = (props) => {
     
     if (content !== '' & 
         subject !== '') {
-            if (subject.length <= 30 & content.length <= 10000) {
+            if (subject.length <= 40 & content.length <= 30000) {
                 axios.put(BOARD.UPDATE, data)
                 .then((res) => {
+                    setIsWriting(false)
                     console.log(res);
                     navigate('/board')
                 })
                 .catch((e) => {
+                    setIsWriting(false)
                     console.error(e);
                 });
             } else {
-                alert('제목(30자)이나 본문(10000자)의 글자수 제한을 초과하였습니다.')
+                setIsWriting(false)
+                alert('제목(40자)이나 본문(30000자)의 글자수 제한을 초과하였습니다.')
             }
         } else {
+            setIsWriting(false)
             alert('제목과 내용을 입력해 주세요.')
         }
     };
@@ -114,9 +121,9 @@ export const Update = (props) => {
                         취소
                     </button>
                     
-                    <Button variant="info" onClick={editing}>
+                    {isWriting === false &&<Button variant="info" onClick={editing}>
                     수정완료
-                    </Button>
+                    </Button>}
                     </div>
             </>
     )

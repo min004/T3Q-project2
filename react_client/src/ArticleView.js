@@ -8,7 +8,8 @@ import {Reply} from "./Reply";
 import {API, BOARD} from "./config";
 import {useNavigate} from 'react-router-dom'; 
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 
 export const ArticleView = (props) => {
     let articleId_temp = new URLSearchParams(window.location.search);
@@ -141,6 +142,7 @@ export const ArticleView = (props) => {
                                 <div className="replyview">
                                 {imgurl !== '' || imgurl !== 'true' || imgurl !== 'false' && <img className="article-image" src={imgurl}/>}
                                 {/* <p><text className="replyview">{content}</text></p> */}
+                                <Viewer initialValue={content || ''} />;
                                 <div dangerouslySetInnerHTML={ {__html: content} }></div>
                                 </div>
                                 </td>

@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import {Link, useNavigate} from 'react-router-dom';
 import Select from "react-dropdown-select";
+import { SEARCH } from "config";
 
 export const NewBoardList = (props) => {
     const [items, setItems] = useState([]) //리스트에 나타낼 아이템
@@ -78,6 +79,21 @@ export const NewBoardList = (props) => {
     // console.log(currentpage)
     };
 
+    function search (e) {
+        axios.get(SEARCH.TITLE+ "/" + `${SearchIdx}`)
+        .then((res) => {
+            setItems(res.data)
+            setNowLoading(false)
+            console.log(SearchIdx)
+        })
+        .catch((e) => {
+            setNowLoading(false)
+            setError(true)
+            console.error(e);
+            
+        });
+
+    }
     return (
         <>
         {error === false ? <>
@@ -141,10 +157,13 @@ export const NewBoardList = (props) => {
         </div>
         <div className="board-list-bottom" style={{justifyContent: 'flex-start', alignContent:'center'}}>
             <Select style={{width:'120px',
-             height:'30px',
+             height:'10px',
              borderRadius:'999px',
-             justifyItems:'center'}} options={options} onChange={(values) => setSearchVal(values)} />
-        <input value={SearchIdx} onChange={(e) => setSearchIdx(e.target.value)} placeholder="검색할 내용 입력"></input>
+             justifyItems:'center',
+             alignItems:'center',
+            paddingTop:'5px'}} options={options} onChange={(values) => setSearchVal(values)} />
+        <input style={{height:'30px'}} value={SearchIdx} onChange={(e) => setSearchIdx(e.target.value)} placeholder="검색할 내용 입력"></input>
+        <button onClick={search}>검색</button>
         </div>
         <Paging page={currentpage} count={count} setPage={setPage} />
     </div>

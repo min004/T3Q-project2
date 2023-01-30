@@ -1,0 +1,36 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: react-ui
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      nodePort: 32232
+  selector:
+    app: react-ui
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: react-ui
+spec:
+  replicas: 1  # Pod를 몇 개 유지시킬지
+  selector:
+    matchLabels:
+      app: react-ui
+  template:
+    metadata:
+      labels:
+        app: react-ui
+    spec:
+      containers:
+        - name: react-ui
+          image: min4/react-ui:1.8s
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always

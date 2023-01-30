@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://172.16.16.132:30915';
-// const BASE_URL2 = 'http://172.16.16.132:30101';
+// const BASE_URL = 'http://172.16.16.132:30101';
 const BASE_URL = 'http://localhost:5000';
 export const API = {
     LOGIN: `${BASE_URL}/api/login`,
@@ -23,3 +23,7 @@ export const COMMENT = {
     REFRESH: `${BASE_URL}/comment/refreshname`,
     COUNT: `${BASE_URL}/comment/count`
 };
+
+export const SEARCH = {
+    TITLE: `${BASE_URL}/search/title`
+}
