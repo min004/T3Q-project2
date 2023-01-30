@@ -13,7 +13,7 @@
 
 .now-loading {
   align-self: center;
-  width: 112px;
+  width: 48px;
 }
 
 .Logo {
@@ -31,7 +31,8 @@
 }
 
 .App {
-  text-align: center;
+  padding-top: 3vh;
+  /* text-align: center; */
   display: flex;
   min-height: 100vh;
   align-items: center;
@@ -53,11 +54,14 @@
 
 .article-content {
   padding: 5px;
+  
 }
 /* 
 .img_box{
   background-image: ;
 } */
+
+
 
 
 .img {
@@ -85,8 +89,7 @@
   max-width: 200px;
   min-width: 80vw;
   justify-content: center;
-  white-space: pre-line;
-  padding: 30px;
+  padding: 100px;
 }
 
 .article-view-bottom {
@@ -114,13 +117,14 @@
 }
 
 .article-write-content {
-  /* display: flex; */
+  display: flex;
   left: 0;
   right: 0;
+  text-align: left;
   /* width: 90%; */
-  height: 20vh;
-  border-radius: 20px;
-  padding: 1rem;
+  /* height: 5vh; */
+  /* border-radius: 20px; */
+  /* padding: 1rem; */
 }
 
 .register-form {
@@ -173,6 +177,7 @@
 
 .replyview {
   /* white-space: pre-line; */
+  white-space: pre-wrap;
   word-break: break-all
 }
 
@@ -195,6 +200,12 @@
   justify-content: center;
 }
 
+.loading-and-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .reply-list-tr {
   display: flex;
   justify-content: space-between;
@@ -204,7 +215,7 @@
 
   flex-direction: column;
   justify-content: center;
-  
+  text-align: center;
   width: 100%;
   min-width: 100px;
 }
@@ -231,6 +242,7 @@
 @media screen and (min-width: 200px) {
   .article-board {
     /* display: flex; */
+    margin-top: 100px;
     padding: 20px;
     border: 1px solid #dba1c8;
     border-radius: 30px;

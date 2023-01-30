@@ -4,7 +4,8 @@ import { useNavigate} from 'react-router-dom';
 import { BOARD } from "config";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
-
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import EditorBox from "EditorBox";
 
 export const Write = (props) => {
     const [subject, setSubject] = useState('');
@@ -34,33 +35,40 @@ export const Write = (props) => {
             setUrl(resp.data.url)
         })
         .catch(e => console.log(e))
+        console.log(formdata);
     }
 
     function delUrl () {
         setUrl('')
     }
 
-    
+    const settingData = (n) => {
+            setContent(n)
+            // console.log(content)
+        }
 
     function writing(e) {
         e.preventDefault();
-
+        
         let data = {
             subject: subject,
             content: content,
-            imgurl: url
+            imgurl: (content.includes('img src')).toString()
         }
 
-        if (content !== '' & 
-        subject !== '') {
-            if (subject.length <= 30 & content.length <= 10000) {
+        if (subject !== '') {
+            if (subject.length <= 30
+                //  & content.length <= 10000
+                 ) {
                 axios.post(BOARD.WRITE, data)
                 .then((res) => {
                     console.log(res);
+                    console.log(data.imgurl)
                     navigate('/board')
                 })
                 .catch((e) => {
                     console.error(e);
+                    console.log(data.imgurl)
                 });
             } else {
                 alert('제목(30자)이나 본문(10000자)의 글자수 제한을 초과하였습니다.')
@@ -73,14 +81,13 @@ export const Write = (props) => {
     return(
         
         <div className="article-board">
-                
-                    {/* <Form.Group  controlId="subject"> */}
-                        {/* <Form.Label></Form.Label> */}
+                        
                         <Form.Control className="article-write" type="text" onChange={(e) => setSubject(e.target.value)} placeholder="제목" />
-                    {/* </Form.Group> */}
-                    {/* <Form.Group  controlId="content"> */}
-                        <Form.Control className="article-write-content" as="textarea" onChange={(e) => {setContent(e.target.value); setLong(e.target.value.length)}} placeholder="내용" />
-                    {/* </Form.Group> */}
+                        {/* <div style={{height:'100px'}}> */}
+                            <EditorBox className="article-write-content" setContent={settingData}/>
+                            {/* </div> */}
+
+                        {/* <Form.Control className="article-write-content" as="textarea" onChange={(e) => {setContent(e.target.value); setLong(e.target.value.length)}} placeholder="내용" />
                     <div><text className="reply-length">  {long}/10000</text></div>
                     <text className="register-passvar" style={{
                         color:"#46536B80",
@@ -100,7 +107,7 @@ export const Write = (props) => {
                         <button style={{width:'286px',
                                         marginTop:'0px',
                                         backgroundColor:'#f7c18e'}} onClick={handleClick}>이미지 업로드</button>
-                    </div>}
+                    </div>} */}
                     
                     <div className="article-view-bottom">
                     <button className="del-btn" onClick={() => window.location.href = "/board"}>

@@ -6,7 +6,7 @@ COPY /react_client/ .
 
 WORKDIR /usr/src/app/react_client
 
-RUN npm install
+RUN npm install --force
 
 EXPOSE 3000
 

@@ -80,7 +80,7 @@ export const Login = (props) => {
             <div className="auth-form-container">
 
                 {/* <img src={logo} style={{height:100}}/> */}
-                <h2>Login</h2>
+                <div style={{textAlign:'center'}}><h2>Login</h2>
                 <form className="login-form" onSubmit={handleSubmit}>
 
                     {/* <label htmlFor="email">email</label> */}
@@ -100,6 +100,7 @@ export const Login = (props) => {
                     <p/><text className="register-passvar" style={{color:"#46536B80"}} onClick={() => alert('저런.. 안됐네요...')}>아이디나 비밀번호를 잊으셨나요?</text>
                     {/* <div> */}
                 </form>
+                </div>
             </div>
         </div>
     )

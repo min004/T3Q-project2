@@ -4,7 +4,8 @@ import { useNavigate} from 'react-router-dom';
 import { BOARD } from "config";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
-
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import EditorBox from "EditorBox";
 
 
 
@@ -42,6 +43,11 @@ export const Update = (props) => {
         setUrl('')
     }
 
+    const settingData = (n) => {
+        setContent(n)
+        console.log(content)
+    }
+
     function editing(e) {
         e.preventDefault();
 
@@ -49,7 +55,7 @@ export const Update = (props) => {
             aid:aid,
             subject: subject,
             content: content,
-            imgurl: url
+            imgurl: (content.includes('img src')).toString()
         }
     
     if (content !== '' & 
@@ -77,11 +83,12 @@ export const Update = (props) => {
                     {/* <Form.Group  controlId="subject"> */}
                         {/* <Form.Label></Form.Label> */}
                         <Form.Control className="article-write" type="text" onChange={(e) => setSubject(e.target.value)} defaultValue={props.title} />
+                        <EditorBox className="article-write-content" setContent={settingData} initVal={props.content}/>
                     {/* </Form.Group> */}
                     {/* <Form.Group  controlId="content"> */}
-                        <Form.Control className="article-write-content" as="textarea" onChange={(e) => {setContent(e.target.value); setLong(e.target.value.length)}} defaultValue={props.content} />
+                        {/* <Form.Control className="article-write-content" as="textarea" onChange={(e) => {setContent(e.target.value); setLong(e.target.value.length)}} defaultValue={props.content} /> */}
                     {/* </Form.Group> */}
-                    <div><text className="reply-length">  {long}/10000</text></div>
+                    {/* <div><text className="reply-length">  {long}/10000</text></div>
                     <text className="register-passvar" style={{
                         color:"#46536B80",
                         marginTop:'10px'}}>개인정보가 담긴 이미지는 업로드 하지 마세요!!</text>
@@ -101,7 +108,7 @@ export const Update = (props) => {
                                         marginTop:'0px',
                                         backgroundColor:'#f7c18e'}} onClick={handleClick}>이미지 업로드</button>
                     </div>}
-                    
+                     */}
                     <div className="article-view-bottom">
                     <button className="del-btn" onClick={() => window.location.href = "/board"}>
                         취소

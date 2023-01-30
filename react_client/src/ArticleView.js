@@ -7,6 +7,7 @@ import {Update} from "./Update";
 import {Reply} from "./Reply";
 import {API, BOARD} from "./config";
 import {useNavigate} from 'react-router-dom'; 
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 
 
 export const ArticleView = (props) => {
@@ -24,6 +25,9 @@ export const ArticleView = (props) => {
     const [name, setName] = useState(null)
     const [imgurl, setImgurl] = useState('')
     const [nowLoading, setNowLoading] = useState(false)
+    const [error, setError] = useState(false)
+    const [next, setNext] = useState(Number(articleId)+1)
+    const [prev, setPrev] = useState(Number(articleId)-1)
     
 
     useEffect(() => {
@@ -53,10 +57,14 @@ export const ArticleView = (props) => {
             })
             .catch((e) => {
                 // console.log(e)
+                setNowLoading(false)
+                setError(true)
                 console.error(e);
             });
 
     }, []);
+
+    
 
     function modeChange() {
         setModifyMode('True')
@@ -94,6 +102,7 @@ export const ArticleView = (props) => {
      */
     return (
         <div className="article-board">
+            {error === false ? <>
             {nowLoading === false ? <>
             {isModifyMode === 'False' ?
                 // <div>False</div>
@@ -129,8 +138,12 @@ export const ArticleView = (props) => {
                         <tr align="left" border-bottom='1px' padding='10px'>
                             <td className="article-info" width="50px"></td>
                             <td className="article-content">
-                                {imgurl && <img className="article-image" src={imgurl}/>}
-                                <p>{content}</p></td>
+                                <div className="replyview">
+                                {imgurl !== '' || imgurl !== 'true' || imgurl !== 'false' && <img className="article-image" src={imgurl}/>}
+                                {/* <p><text className="replyview">{content}</text></p> */}
+                                <div dangerouslySetInnerHTML={ {__html: content} }></div>
+                                </div>
+                                </td>
                         </tr>
                         <tr>
                             <td colSpan={2}>
@@ -144,6 +157,8 @@ export const ArticleView = (props) => {
                         </tr>
                         </tbody>
                     </Table>
+                    {/* <button onClick={navigate(`/article?aid=${Number(articleId)-1}`)}>이전글</button>  
+                    <button onClick={navigate(`/article?aid=${Number(articleId)+1}`)}>다음글</button> */}
                     <div className="article-view-bottom">
                     {isModifiable === 'true' ?
                     <div className="article-view-bottom-l">
@@ -166,8 +181,9 @@ export const ArticleView = (props) => {
                 <Update aid={articleId} title={title} content={content} imgurl={imgurl}/>
             }</>
         : <>
-        <img className="now-loading" src="hourglass.png" /><p/><h2>Now Loading...</h2>
+        <div className="loading-and-error"><img className="now-loading" src="hourglass.png" /><h2>Now Loading...</h2></div>
         </>}
+        </> : <div className="loading-and-error"><h2>Error!!</h2></div>}
         </div>
     );
 

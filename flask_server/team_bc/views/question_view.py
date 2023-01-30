@@ -7,22 +7,47 @@ from flask import Response
 from flask_login import login_required
 from team_bc.models.Infomation import Information
 from team_bc.models.question import Question
+from numpy import argsort
 
 bp = Blueprint('question', __name__, url_prefix='/board')
 
 
+# @bp.route('/list')
+# @login_required
+# def _list():
+#     from flask import session
+#     question_list = Question.query.all()
+#     result = []
+#     re = []
+#     for i in question_list:
+#         part = i.to_dict()
+#         part.pop("content")
+#         if part["flag"]:
+#             result.append(i.to_dict())
+#     return result[::-1]
+
 @bp.route('/list')
 @login_required
 def _list():
-    from flask import session
     question_list = Question.query.all()
-    result = []
-    re = []
+
+    temp = []
     for i in question_list:
         part = i.to_dict()
         part.pop("content")
         if part["flag"]:
-            result.append(i.to_dict())
+            temp.append(part)
+
+    date = []
+    for i in temp:
+        date.append(i['create_date'])
+
+    index = argsort(date)
+
+    result = []
+    for i in index:
+        result.append(temp[i])
+
     return result[::-1]
 
 
@@ -31,7 +56,7 @@ def _list():
 def create():
     dic_data = json.loads(request.data)
     subject = dic_data["subject"]
-    content = dic_data["content"]
+    content = str(dic_data["content"])
     img_url = dic_data["imgurl"]
     from flask import session
     user_id = session['_user_id']
@@ -48,16 +73,16 @@ def create():
 @login_required
 def modify():
     dic_data = json.loads(request.data)
-    # KST = datetime.timezone(datetime.timedelta(hours=9))
+    KST = datetime.timezone(datetime.timedelta(hours=9))
     subject = dic_data["subject"]
     content = dic_data["content"]
     question_id = dic_data["aid"]
-    # create_date = str(datetime.datetime.now(KST))
+    create_date = str(datetime.datetime.now(KST))
     question = Question.query.get(question_id)
     if str(flask_login.current_user.id) == str(question.user_id):
         question.subject = subject
         question.content = content
-        # question.create_date = create_date
+        question.create_date = create_date
         from team_bc import db
         db.session.commit()
         response = jsonify()

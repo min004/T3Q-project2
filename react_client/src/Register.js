@@ -65,7 +65,9 @@ export const Register = (props) => {
 
     return (
         <div className="auth-form-container">
+            <div style={{textAlign:'center'}}>
             <h2>Register</h2>
+            </div>
             <form className="register-form" onSubmit={handleSubmit}>
                 {/* <label htmlFor="name">Name</label> */}
 
@@ -91,6 +93,7 @@ export const Register = (props) => {
                 <button type="submit" onClick={onSubmit}>Submit</button>
             </form>
             <button className="link-btn" onClick={() => window.location.href = '/'}>Back</button>
+            
         </div>
     )
 }
